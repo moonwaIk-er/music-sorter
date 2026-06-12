@@ -85,7 +85,7 @@ def scan(request: ScanRequest):
             "title": final_title,
             "artist": final_artist,
             "extension": file_path.suffix,
-            "newName": f"{final_artist} - {final_title}{file_path.suffix}"
+            "newName": f"{final_title} - {final_artist}{file_path.suffix}"
         })
 
     return {"tracks": tracks}
@@ -102,14 +102,13 @@ def rename_files(request: RenameRequest):
             continue
 
         title = clean_filename(track.get("title") or old_path.stem)
-        artist = clean_filename(track.get("artist") or "Unknown Artist")
 
-        new_name = f"{artist} - {title}{old_path.suffix}"
+        new_name = f"{title}{old_path.suffix}"
         new_path = old_path.parent / new_name
 
         counter = 1
         while new_path.exists():
-            new_name = f"{artist} - {title} ({counter}){old_path.suffix}"
+            new_name = f"{title} ({counter}){old_path.suffix}"
             new_path = old_path.parent / new_name
             counter += 1
 

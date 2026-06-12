@@ -14,7 +14,7 @@ export default function Home() {
   const [folderPath, setFolderPath] = useState<string>("");
   const [tracks, setTracks] = useState<Track[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-
+  
   const scanMusic = async () => {
     console.log("Scan clicked");
     console.log("Folder path:", folderPath);
